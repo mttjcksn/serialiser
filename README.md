@@ -1,4 +1,4 @@
-# serialser
+# serialiser
 A (de)serialiser lib for easily serialising primitive types, vectors, maps, unordered_maps, and custom objects.
 
 ## Build example
