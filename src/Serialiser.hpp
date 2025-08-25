@@ -148,6 +148,25 @@ public:
         buffer.insert(buffer.end(), item.data(), item.data() + item.size());
     }
 
+    // Serialise string
+    static std::vector<char> serialise(const std::string& s)
+    {
+        std::vector<char> out;
+        appendVector(out, serialise(static_cast<int32_t>(s.size())));
+        out.insert(out.end(), s.begin(), s.end());
+        return out;
+    }
+
+    // Deserialise string
+    static size_t deserialise(const char* data, std::string& s)
+    {
+        const char* rh = data;
+        int32_t len = 0; rh += deserialise(rh, len);
+        if (len < 0) return 0;
+        s.assign(rh, rh + len); rh += len;
+        return static_cast<size_t>(rh - data);
+    }
+
     template <typename T>
     static std::vector<char> serialise(const T& obj)
     {        

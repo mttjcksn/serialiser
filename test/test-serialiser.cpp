@@ -61,6 +61,33 @@ TEST(SerialiserTest, SerialiseDeserialiseVectorInt) {
     EXPECT_EQ(originalVector, deserialisedVector);
 }
 
+// Test serialization and deserialization of a std::string
+TEST(SerialiserTest, SerialiseDeserialiseString) {
+    std::string original = "Hello, world! こんにちは 🌍";
+
+    // Serialise
+    std::vector<char> serialisedData = Serialiser::serialise(original);
+
+    // Deserialise
+    std::string deserialised;
+    Serialiser::deserialise(serialisedData.data(), deserialised);
+
+    // Verify that the deserialized string matches the original
+    EXPECT_EQ(original, deserialised);
+}
+
+// Test serialization and deserialization of an empty std::string
+TEST(SerialiserTest, SerialiseDeserialiseEmptyString) {
+    std::string original = "";
+
+    std::vector<char> serialisedData = Serialiser::serialise(original);
+
+    std::string deserialised;
+    Serialiser::deserialise(serialisedData.data(), deserialised);
+
+    EXPECT_EQ(original, deserialised);
+}
+
 // Test serialization and deserialization of a std::vector<std::string>
 TEST(SerialiserTest, SerialiseDeserialiseVectorString) {
     std::vector<std::string> originalVector = {"one", "two", "three"};
