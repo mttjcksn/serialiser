@@ -4,6 +4,8 @@
 #include <map>
 #include <unordered_map>
 
+static_assert(sizeof(bool)==1, "bool must be 1 byte");
+
 ///  Serialiser class 
 /**
  * Serialise and deserialise built-in types, STL containers, and custom types with supporting methods.
