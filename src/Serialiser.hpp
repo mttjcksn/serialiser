@@ -1,5 +1,8 @@
 #pragma once
 
+#include <cstdint>
+#include <string>
+#include <cstring>
 #include <vector>
 #include <map>
 #include <unordered_map>
